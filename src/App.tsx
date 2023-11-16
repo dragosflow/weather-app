@@ -1,24 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import SearchBar from './components/SearcBar';
+import TitleText from './components/TitleText';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="fixed w-screen h-screen bg-cover blur-sm bg-center bg-[url('/Users/dragosflorea/Projects/weather-app/src/background.jpg')]" >
+        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
+      </div>
+      <div className='flex flex-col items-center justify-center'>
+          <TitleText/>
+        <div className='flex mx-auto mt-10'>
+          <SearchBar/>
+        </div>
+      </div>
     </div>
   );
 }
