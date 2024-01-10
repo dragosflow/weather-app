@@ -1,22 +1,18 @@
 import React, { useState } from "react";
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { Combobox } from '@headlessui/react'
-import data from '../ro.json'
+import { City } from "../utils/types";
 
+export default function SearchBar({ data, onCityChange }: { data: City[], onCityChange: (City: City) => void }) {
 
-export default function SearchBar() {
+    const [selectedCity, setSelectedCity] = useState({});
 
-    type City = {
-        name: string, 
-        lat: string, 
-        lng: string, 
-        country: string, 
-        iso2: string, 
-        admin_name: string, 
-        capital: string, 
-        population: string, 
-        population_proper: string
-    }
+    const updateSelectedCity = (city: City) => {
+        setSelectedCity(city);
+        onCityChange(city);
+        console.log(selectedCity)
+    };
+
 
     function classNames(...classes: (string | boolean)[]) {
         return classes.filter(Boolean).join(' ')
@@ -24,7 +20,6 @@ export default function SearchBar() {
       
       const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
-          // Dă send sau executați orice acțiune dorită aici
           sendMessage();
           if (event.currentTarget instanceof HTMLInputElement) {
             event.currentTarget.blur();
@@ -33,16 +28,12 @@ export default function SearchBar() {
       };
     
       const sendMessage = () => {
-        // Implementează logica pentru trimiterea mesajului aici
         console.log("Message sent:");
     
-        // Dacă este un formular, poți împiedica reîncărcarea paginii
-        // event.preventDefault();
       };
     const cities: City[] = data;
       
     const [query, setQuery] = useState('')
-    const [selectedCity, setSelectedCity] = useState({})
     const filteredCities = 
         cities.filter((city: City) => {
             return city.name.toLowerCase().startsWith(query.toLowerCase())
@@ -50,11 +41,11 @@ export default function SearchBar() {
 
 
     return (
-    <div className="flex mx-auto w-96 min-w-full">
-        <Combobox as="div" value={selectedCity} onChange={setSelectedCity}>
+    <div className="flex mx-auto w-96 min-w-full justify-center">
+        <Combobox as="div" value={selectedCity} onChange={updateSelectedCity}>
             <div className="relative mt-2">
                 <Combobox.Input
-                    className=" rounded-sm bg-inherit py-1.5 pl-3 pr-10 text-gray-900 w-96 min-w-full outline-none focus:shadow-gray-900 focus:shadow-lg focus:rounded-md sm:text-sm sm:leading-6 placeholder-white placeholder"
+                    className=" rounded-md bg-white py-1.5 pl-3 pr-10 text-gray-900 md:w-96 min-w-full outline-none focus:shadow-gray-900 focus:shadow-lg focus:rounded-md sm:text-sm sm:leading-6 placeholder-white"
                     placeholder="Type city name here and press enter"
                     onChange={(event) => {query !== event.target.value? setQuery(event.target.value): console.log(null)}}
                     displayValue={(city: City) => city.name}

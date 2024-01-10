@@ -23,8 +23,8 @@ import React from "react";
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:max-w-none">
             <motion.div 
-             initial={{ scale: 0 }}
-             animate={{ scale: 1 }}
+             initial={{ scale: 0, opacity: 0, y: -100 }}
+             animate={{ scale: 1, opacity: 1, y: 0 }}
              transition={{ duration: 4 }}
             className="text-center">
               <h2 className="text-3xl font-bold tracking-tight text-white sm:text-7xl">Weather App</h2>
@@ -34,10 +34,14 @@ import React from "react";
             </motion.div>
             <dl className="mt-5 grid gap-0.5 overflow-hidden rounded-2xl text-center grid-cols-2">
               {stats.map((stat) => (
-                <div key={stat.id} className="flex flex-col bg-white/5 p-4">
+                <motion.div
+                initial={{ scale: 0, opacity: 0, y: -100 }}
+                animate={{ scale: [0, 1.01, 1], opacity: 1, y: 0 }}
+                transition={{ duration: 5 }}
+                key={stat.id} className="flex flex-col bg-white/5 p-4 w-full">
                   <dt className="text-sm font-semibold text-gray-300">{stat.name}</dt>
                   <dd className="order-first text-xl font-semibold tracking-tight text-white">{stat.value}</dd>
-                </div>
+                </motion.div>
               ))}
             </dl>
           </div>
