@@ -14,7 +14,7 @@ async function getWeatherData(city: string) {
     console.log('Response:', response.data); // Verifică răspunsul primit
     return response.data;
   } catch (error: any) {
-    console.error('Request failed:', error.message);
+    console.error('Request failed:', error);
     return null;
   }
 }
