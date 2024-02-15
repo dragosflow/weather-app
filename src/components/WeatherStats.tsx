@@ -6,9 +6,6 @@ import { motion } from "framer-motion";
 
 export default function WeatherStats({weatherStats, cityStats}: {weatherStats: any, cityStats: any}) {
 
-    console.log("weather", weatherStats)
-    console.log("stats", cityStats)
-
     function toLocalTime(time: number) {
         const date = new Date(time * 1000); 
         return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
