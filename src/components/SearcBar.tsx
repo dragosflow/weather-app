@@ -10,7 +10,6 @@ export default function SearchBar({ data, onCityChange }: { data: City[], onCity
     const updateSelectedCity = (city: City) => {
         setSelectedCity(city);
         onCityChange(city);
-        console.log(selectedCity)
     };
 
 
@@ -28,8 +27,7 @@ export default function SearchBar({ data, onCityChange }: { data: City[], onCity
       };
     
       const sendMessage = () => {
-        console.log("Message sent:");
-    
+
       };
     const cities: City[] = data;
       
